@@ -23,22 +23,8 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
-minErr = 100.0;
-CMatrix = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
-sigmaMatrix = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
-for i = 1:size(CMatrix, 2)
-  for j = 1:size(sigmaMatrix,2)
-    model= svmTrain(X, y, CMatrix(i), @(x1, x2) gaussianKernel(x1, x2, sigmaMatrix(j)));
-    predictions = svmPredict(model, Xval);
-    prediction = mean(double(predictions ~= yval));
-    if prediction < minErr;
-      minErr = prediction;
-      C = CMatrix(i);
-      sigma = sigmaMatrix(j);
-    end
-  end
-end
+
 
 
 
